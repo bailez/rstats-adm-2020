@@ -13,7 +13,7 @@ options(digits = 2)
 # leitura das planilhas
 #--------------------------------
 ## planilha municípios com convid-19
-df_municipios <- read.csv(file = "covid.municipios.SP.csv", 
+df_municipios <- read.csv(file = "scripts/eps/dados/covid.municipios.SP.csv", 
                           header = TRUE,                     # com header 
                           sep = ",",                         # separador ","
                           fill = TRUE,                       # preenche com NA células vazias
@@ -27,10 +27,10 @@ df_municipios <- df_municipios[order(as.character(df_municipios$Municipio)),]
 #-------
 ## planilha população - municípios SP
 df_pop <- read.csv(file = "pop.SP.2020.csv", 
-                   ...complete... ,                     # com header 
-                   ...complete... ,                     # separador ","
-                   ...complete... ,                     # preenche com NA células vazias
-                   ...complete...                       # lê e armazena os caracteres com o tipo caracter
+                   header = TRUE,                     # com header 
+                   sep = ",",                         # separador ","
+                   fill = TRUE,                       # preenche com NA células vazias
+                   as.is = TRUE                      # lê e armazena os caracteres com o tipo caracter
 )
 
 print(df_pop)  # só para ver os dados na tela
