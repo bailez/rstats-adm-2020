@@ -6,7 +6,7 @@
 # 2. funções sobre vetores
 
 # Q1. criar os vetores
-  v1 <- as.integer(seq(1,15, length.out = 10))
+  v1 <- as.integer(seq(1,15, length.out = 20))
   v2 <- c(3:5, 23, NA, 14, NA)
   print(v1)
   print(v2)
@@ -29,7 +29,13 @@
 # Q3. soma de dois vetores do mesmo tamanho                           
   soma_2vetores_tam_igual <- function(vet1,vet2){
     vresult <- NULL
-    vresult = vet1 + vet2
+    if (length(vet1) == length(vet2)){ 
+      vresult = vet1 + vet2
+    }
+    else{ 
+      print("os vetores tem tamanhos distintos")
+      }
+    
     return(vresult)
   }
   
@@ -86,21 +92,25 @@
   print(v2)
   cat("Soma dos vetores \n" )
   print(soma_vets)
-        
+    
 # Q6. soma de dois vetores - repetir valores se um vetor for menor que o outro
   soma_2vetores_repete <- function(vet1,vet2){
     vresult <- NULL
     len = length(vet1) - length(vet2)
+    
     if (len > 0){
       print("vet1 é maior")
-      vet2 = c(vet2,vet2[1:len])
-    } 
-    else if (len < 0){
+      piso = floor(length(vet1)/length(vet2))
+      res = length(vet1) %% length(vet2)
+      vet2 = c(rep(vet2,piso),vet2[1: res])
+    }else if (len < 0) {
       print("vet2 é maior")
-      vet1 = c(vet1,vet1[1:-len])
-    }
-    else{
-      print("vets são iguais") 
+      piso = floor(length(vet2)/length(vet1))
+      res = length(vet2) %% length(vet1)
+      vet1 = c(rep(vet1,piso),vet1[1: res])
+      
+    }else {
+      print("vets iguais")
     }
     vresult = vet1 + vet2
     return(vresult)
@@ -108,8 +118,5 @@
   
   
   soma_vets <- soma_2vetores_repete(v1,v2)
-  print(v1)
-  print(v2)
   cat("Soma dos vetores \n" )
   print(soma_vets)
-  
